@@ -1,0 +1,28 @@
+@charset "UTF-8";
+
+$position-values: (relative, absolute, fixed) !default;
+$helpers-position-class-prefix: 'pos' !default;
+
+@mixin helpers-position($responsive : false) {
+  
+  @if $responsive {
+    @each $value in $position-values {
+      @each $classname in $breakpoint-classes {
+        
+        @include breakpoint($classname) {
+          .#{$classname}-#{$helpers-position-class-prefix}-#{$value} {
+            position: #{$value};
+          }
+        }
+      }
+    }
+  } @else {
+    @each $value in $position-values {
+      .#{$helpers-position-class-prefix}-#{$value} {
+        position: #{$value};
+      }
+    }
+  }
+  
+  
+}
