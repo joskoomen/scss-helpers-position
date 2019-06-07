@@ -6,12 +6,13 @@ $helpers-position-class-prefix: 'pos' !default;
 @mixin helpers-position($responsive : false) {
   
   @if $responsive {
-    @each $value in $position-values {
-      @each $classname in $breakpoint-classes {
-        
-        @include breakpoint($classname) {
+    
+    @each $classname in $breakpoint-classes {
+      
+      @include breakpoint($classname) {
+        @each $value in $position-values {
           .#{$classname}-#{$helpers-position-class-prefix}-#{$value} {
-            position: #{$value};
+            position: #{$value} !important;
           }
         }
       }
@@ -19,7 +20,7 @@ $helpers-position-class-prefix: 'pos' !default;
   } @else {
     @each $value in $position-values {
       .#{$helpers-position-class-prefix}-#{$value} {
-        position: #{$value};
+        position: #{$value} !important;
       }
     }
   }
